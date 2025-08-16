@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>OttaconProductions – Anime Figures</title>
+  <meta name="description" content="Official website for Akihelper – Track anime figure prices and manage your collection." />
+  <!-- Favicon -->
+  <link rel="icon" href="assets/animeFigureIcon.png" type="image/png">
+  <!-- hreflang (optional if you add to index.html too) -->
+  <link rel="alternate" hreflang="de" href="/index.html"/>
+  <style>
+    :root{
+      --accent:#6E49FF;
+      --bg:#0b0f18; --card:#111727; --text:#e7ebf3; --muted:#a7b1c2; --border:#1b2438; --ring:rgba(110,73,255,.35);
+      --shadow:0 10px 30px rgba(0,0,0,.25);
+      --radius:18px;
+    }
+    @media (prefers-color-scheme: light){
+      :root{ --bg:#ffffff; --card:#fbfbfe; --text:#0f1728; --muted:#5a6375; --border:#e6e8f0; --ring:rgba(110,73,255,.2); --shadow:0 6px 22px rgba(17,24,39,.08); }
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font:16px/1.6 ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;color:var(--text);
+         background:radial-gradient(1000px 600px at 10% -10%, rgba(110,73,255,.18), transparent 60%),
+                    radial-gradient(900px 500px at 100% 0%, rgba(110,73,255,.12), transparent 60%), var(--bg)}
+    a{color:var(--text)}
+    .wrap{max-width:860px;margin:0 auto;padding:28px 16px 96px}
+    header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.02);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+    nav{max-width:860px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:10px 16px}
+    .brand{display:flex;gap:10px;align-items:center;font-weight:700;letter-spacing:.2px;text-decoration:none}
+    .dot{width:10px;height:10px;border-radius:999px;background:var(--accent);box-shadow:0 0 24px var(--accent)}
+    .links{display:flex;gap:10px;align-items:center}
+    .link{opacity:.85;text-decoration:none;padding:8px 10px;border-radius:10px}
+    .link:hover{opacity:1;background:rgba(110,73,255,.1)}
+    .btn{display:inline-flex;gap:8px;align-items:center;background:var(--accent);color:#fff;text-decoration:none;padding:10px 14px;border-radius:12px;box-shadow:var(--shadow);border:1px solid rgba(0,0,0,.12)}
+    .btn:hover{transform:translateY(-1px)}
+    section{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:24px;margin:18px 0;box-shadow:var(--shadow)}
+    h1,h2,h3{line-height:1.2;margin:0 0 10px}
+    h1{font-size:2rem}
+    h2{font-size:1.35rem;margin-top:6px}
+    p{margin:8px 0}
+    .muted{color:var(--muted)}
+    .card{border:1px solid var(--border);border-radius:16px;padding:16px;background:linear-gradient(180deg, rgba(255,255,255,.02), transparent);}
+    .row{display:flex;gap:14px;align-items:center}
+    .icon{width:48px;height:48px;border-radius:12px;overflow:hidden;display:grid;place-items:center}
+    .icon img{width:100%;height:100%;object-fit:cover;border-radius:12px}
+    .title{font-weight:700}
+    .kpi{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
+    .chip{border:1px solid var(--border);border-radius:12px;padding:8px 12px;display:flex;justify-content:space-between}
+    footer{max-width:860px;margin:0 auto;padding:28px 16px;color:var(--muted);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+    .lang{font-size:.85rem;opacity:.9}
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a class="brand" href="#home"><span class="dot"></span><span>OttaconProductions</span></a>
+      <div class="links">
+        <a class="link" href="#home">App</a>
+        <a class="link" href="#support">Support</a>
+        <a class="link" href="#privacy">Privacy</a>
+        <a class="link lang" href="/index.html" hreflang="de" aria-label="Deutsch">DE</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="wrap">
+    <section id="home" class="card">
+      <div class="row">
+        <div class="icon">
+          <img src="assets/animeFigureIcon.png" alt="App Icon">
+        </div>
+        <div>
+          <div class="title">Anime Figures Price Tracker</div>
+          <div class="muted">Collect figures and compare prices</div>
+        </div>
+      </div>
+      <div class="kpi">
+        <div class="chip"><span>iOS</span><span>≥ 18</span></div>
+        <div class="chip"><span>Version</span><span>1.0.0</span></div>
+        <div class="chip"><span>Updated</span><span id="updated-app">—</span></div>
+      </div>
+      <div style="margin-top:12px">
+        <a class="btn" href="https://www.akihelper.de" rel="noopener">View on App Store</a>
+      </div>
+    </section>
+
+    <section id="support">
+      <h2>Support</h2>
+      <p>If you have questions or issues, email me at <a href="mailto:support@ottacon.app">support@ottacon.app</a>.</p>
+      <p>Please include (if possible) the app version, iOS version, device model, and a short description of the issue.</p>
+    </section>
+
+    <section id="privacy">
+      <h2>Privacy Policy</h2>
+      <p><em>Last updated:</em> <span id="ppDate">—</span></p>
+      <h3>Controller</h3>
+      <p>OttaconProductions<br>
+         Email: <a href="mailto:support@ottacon.app">support@ottacon.app</a></p>
+      <h3>What data is processed?</h3>
+      <p><strong>None.</strong> This app does not collect, store, or transmit <em>any</em> personal data to me or third parties. All content and settings remain on your device.</p>
+      <h3>Purposes & Legal Basis</h3>
+      <p>No processing of personal data takes place. If you contact me by email voluntarily, that data is used only to handle your request (Art. 6(1)(b) GDPR).</p>
+      <h3>Third Parties</h3>
+      <p>No third‑party SDKs or services for tracking, analytics, or advertising are used. The app is distributed via the Apple App Store only.</p>
+      <h3>Retention</h3>
+      <p>As no data is collected, nothing is stored. Emails you send to me are deleted after your request is resolved unless legal retention duties apply.</p>
+      <h3>Your Rights</h3>
+      <p>For email contact, the rights under Art. 15–21 GDPR apply. Reach out via the email above.</p>
+    </section>
+  </main>
+
+  <footer>
+    <span>© <span id="year"></span> OttaconProductions</span>
+    <span><a href="#privacy">Privacy</a> · <a href="#support">Support</a> · <a class="lang" href="/index.html" hreflang="de">DE</a></span>
+  </footer>
+
+  <script>
+    const now = new Date();
+    document.getElementById('year').textContent = now.getFullYear();
+    document.getElementById('ppDate').textContent = now.toLocaleDateString('en-US');
+    document.getElementById('updated-app').textContent = now.toLocaleDateString('en-US');
+  </script>
+</body>
+</html>
