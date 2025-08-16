@@ -3,8 +3,10 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>OttaconProductions – Akihelper</title>
+  <title>OttaconProductions – Anime Figures</title>
   <meta name="description" content="Offizielle Website von Akihelper – Figuren sammeln und Preise vergleichen." />
+  <!-- Favicon -->
+  <link rel="icon" href="icon.png" type="image/png">
   <style>
     :root{
       --accent:#6E49FF;
@@ -38,7 +40,8 @@
     .muted{color:var(--muted)}
     .card{border:1px solid var(--border);border-radius:16px;padding:16px;background:linear-gradient(180deg, rgba(255,255,255,.02), transparent);}
     .row{display:flex;gap:14px;align-items:center}
-    .icon{width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg, var(--accent), rgba(110,73,255,.55));display:grid;place-items:center;color:#fff;font-weight:700;font-size:1.2rem}
+    .icon{width:48px;height:48px;border-radius:12px;overflow:hidden;display:grid;place-items:center}
+    .icon img{width:100%;height:100%;object-fit:cover;border-radius:12px}
     .title{font-weight:700}
     .kpi{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
     .chip{border:1px solid var(--border);border-radius:12px;padding:8px 12px;display:flex;justify-content:space-between}
@@ -60,26 +63,28 @@
   <main class="wrap">
     <section id="home" class="card">
       <div class="row">
-        <div class="icon">A</div>
+        <div class="icon">
+          <img src="icon.png" alt="App Icon">
+        </div>
         <div>
-          <div class="title">Akihelper</div>
+          <div class="title">Anime Figures Price Tracker</div>
           <div class="muted">Figuren sammeln und Preise vergleichen</div>
         </div>
       </div>
       <div class="kpi">
-        <div class="chip"><span>iOS</span><span>≥ 15</span></div>
+        <div class="chip"><span>iOS</span><span>≥ 18</span></div>
         <div class="chip"><span>Version</span><span>1.0.0</span></div>
         <div class="chip"><span>Update</span><span id="updated-app">—</span></div>
       </div>
       <div style="margin-top:12px">
-        <a class="btn" href="https://www.akihelper.de" rel="noopener">Zum App Store</a>
+        <a class="btn" href="https://www.akihelper.de" rel="noopener">Zum App Store</a>
       </div>
     </section>
 
     <section id="support">
       <h2>Support</h2>
-      <p>Bei Fragen oder Problemen kontaktiere mich per E‑Mail: <a href="mailto:support@ottacon.app">support@ottacon.app</a></p>
-      <p>Bitte gib (falls möglich) App‑Version, iOS‑Version, Gerätemodell und eine kurze Fehlerbeschreibung an.</p>
+      <p>Bei Fragen oder Problemen kontaktiere mich per E-Mail: <a href="mailto:support@ottacon.app">support@ottacon.app</a></p>
+      <p>Bitte gib (falls möglich) App-Version, iOS-Version, Gerätemodell und eine kurze Fehlerbeschreibung an.</p>
     </section>
 
     <section id="privacy">
@@ -87,17 +92,18 @@
       <p><em>Letzte Aktualisierung:</em> <span id="ppDate">—</span></p>
       <h3>Verantwortlich</h3>
       <p>OttaconProductions<br>
-         E‑Mail: <a href="mailto:support@ottacon.app">support@ottacon.app</a></p>
+         E-Mail: <a href="mailto:support@ottacon.app">support@ottacon.app</a></p>
       <h3>Welche Daten werden verarbeitet?</h3>
       <p><strong>Keine.</strong> Diese App erhebt, speichert oder übermittelt <em>keine</em> personenbezogenen Daten an mich oder Dritte. Alle Inhalte und Einstellungen verbleiben lokal auf deinem Gerät.</p>
       <h3>Verarbeitungszwecke & Rechtsgrundlagen</h3>
-      <p>Es findet keine Verarbeitung personenbezogener Daten statt. Wenn du mich freiwillig per E‑Mail kontaktierst, werden die darin enthaltenen Daten ausschließlich zur Bearbeitung deiner Anfrage verwendet (Art. 6 Abs. 1 b DSGVO).</p>
+      <p>Es findet keine Verarbeitung personenbezogener Daten statt. Wenn du mich freiwillig per E-Mail kontaktierst, werden die darin enthaltenen Daten ausschließlich zur Bearbeitung deiner Anfrage verwendet (Art. 6 Abs. 1 b DSGVO).</p>
       <h3>Drittanbieter</h3>
-      <p>Es werden keine Drittanbieter‑SDKs oder Dienste für Tracking, Analyse oder Werbung eingesetzt. Die App wird ausschließlich über den Apple App Store bereitgestellt.</p>
+      <p>Es werden keine Drittanbieter-SDKs oder Dienste für Tracking, Analyse oder Werbung eingesetzt. Die App wird ausschließlich über den Apple App Store bereitgestellt.</p>
       <h3>Speicherdauer</h3>
-      <p>Da keine Daten erhoben werden, fallen keine Speicherungen an. E‑Mails, die du mir sendest, lösche ich nach Erledigung deiner Anfrage, sofern keine gesetzlichen Aufbewahrungspflichten bestehen.</p>
+      <p>Da keine Daten erhoben werden, fallen keine Speicherungen an. E-Mails, die du mir sendest, lösche ich nach Erledigung deiner Anfrage, sofern keine gesetzlichen Aufbewahrungspflichten bestehen.</p>
       <h3>Deine Rechte</h3>
-      <p>Bei E‑Mail‑Kontakt gelten die Rechte nach Art. 15–21 DSGVO. Wende dich dafür an die oben angegebene E‑Mail‑Adresse.</p>
+      <p>Bei E-Mail-Kontakt gelten die Rechte nach Art. 15–21 DSGVO. Wende dich dafür an die oben angegebene E-Mail-Adresse.</p>
+      <p class="muted">Hinweis: Mustertext ohne Rechtsberatung. Bitte an deine App anpassen.</p>
     </section>
   </main>
 
