@@ -8,46 +8,7 @@
   <!-- Favicon -->
   <link rel="icon" href="/assets/animeFigureIcon.png" type="image/png">
   <link rel="alternate" hreflang="en" href="/en/index.html">
-  <style>
-    :root{
-      --accent:#6E49FF;
-      --bg:#0b0f18; --card:#111727; --text:#e7ebf3; --muted:#a7b1c2; --border:#1b2438; --ring:rgba(110,73,255,.35);
-      --shadow:0 10px 30px rgba(0,0,0,.25);
-      --radius:18px;
-    }
-    @media (prefers-color-scheme: light){
-      :root{ --bg:#ffffff; --card:#fbfbfe; --text:#0f1728; --muted:#5a6375; --border:#e6e8f0; --ring:rgba(110,73,255,.2); --shadow:0 6px 22px rgba(17,24,39,.08); }
-    }
-    *{box-sizing:border-box}
-    body{margin:0;font:16px/1.6 ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;color:var(--text);
-         background:radial-gradient(1000px 600px at 10% -10%, rgba(110,73,255,.18), transparent 60%),
-                    radial-gradient(900px 500px at 100% 0%, rgba(110,73,255,.12), transparent 60%), var(--bg)}
-    a{color:var(--text)}
-    .wrap{max-width:860px;margin:0 auto;padding:28px 16px 96px}
-    header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.02);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
-    nav{max-width:860px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:10px 16px}
-    .brand{display:flex;gap:10px;align-items:center;font-weight:700;letter-spacing:.2px;text-decoration:none}
-    .dot{width:10px;height:10px;border-radius:999px;background:var(--accent);box-shadow:0 0 24px var(--accent)}
-    .links{display:flex;gap:10px;align-items:center}
-    .link{opacity:.85;text-decoration:none;padding:8px 10px;border-radius:10px}
-    .link:hover{opacity:1;background:rgba(110,73,255,.1)}
-    .btn{display:inline-flex;gap:8px;align-items:center;background:var(--accent);color:#fff;text-decoration:none;padding:10px 14px;border-radius:12px;box-shadow:var(--shadow);border:1px solid rgba(0,0,0,.12)}
-    .btn:hover{transform:translateY(-1px)}
-    section{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:24px;margin:18px 0;box-shadow:var(--shadow)}
-    h1,h2,h3{line-height:1.2;margin:0 0 10px}
-    h1{font-size:2rem}
-    h2{font-size:1.35rem;margin-top:6px}
-    p{margin:8px 0}
-    .muted{color:var(--muted)}
-    .card{border:1px solid var(--border);border-radius:16px;padding:16px;background:linear-gradient(180deg, rgba(255,255,255,.02), transparent);}
-    .row{display:flex;gap:14px;align-items:center}
-    .icon{width:48px;height:48px;border-radius:12px;overflow:hidden;display:grid;place-items:center}
-    .icon img{width:100%;height:100%;object-fit:cover;border-radius:12px}
-    .title{font-weight:700}
-    .kpi{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
-    .chip{border:1px solid var(--border);border-radius:12px;padding:8px 12px;display:flex;justify-content:space-between}
-    footer{max-width:860px;margin:0 auto;padding:28px 16px;color:var(--muted);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
-  </style>
+  <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
   <header>
