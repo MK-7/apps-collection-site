@@ -14,7 +14,10 @@
   <header>
     <nav>
       <a class="brand" href="#home"><span class="dot"></span><span>OttaconProductions</span></a>
-      <div class="links">
+      <!-- 2) Mobile menu button -->
+      <button id="menu-btn" class="menu-btn" aria-expanded="false" aria-controls="nav-links" aria-label="Menü">☰ Menu</button>
+      <!-- 3) Nav links container with id -->
+      <div id="nav-links" class="links">
         <a class="link" href="#home">App</a>
         <a class="link" href="#support">Support</a>
         <a class="link" href="#privacy">Datenschutz</a>
@@ -79,6 +82,15 @@
     document.getElementById('year').textContent = now.getFullYear();
     document.getElementById('ppDate').textContent = now.toLocaleDateString('de-DE');
     document.getElementById('updated-app').textContent = now.toLocaleDateString('de-DE');
+
+    const menuBtn = document.getElementById('menu-btn');
+    const navLinks = document.getElementById('nav-links');
+    if (menuBtn && navLinks) {
+      menuBtn.addEventListener('click', () => {
+        const open = navLinks.classList.toggle('open');
+        menuBtn.setAttribute('aria-expanded', String(open));
+      });
+    }
   </script>
 </body>
 </html>

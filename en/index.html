@@ -15,11 +15,14 @@
   <header>
     <nav>
       <a class="brand" href="#home"><span class="dot"></span><span>OttaconProductions</span></a>
-      <div class="links">
+      <!-- 2) Mobile menu button -->
+      <button id="menu-btn" class="menu-btn" aria-expanded="false" aria-controls="nav-links" aria-label="Menü">☰ Menu</button>
+      <!-- 3) Nav links container with id -->
+      <div id="nav-links" class="links">
         <a class="link" href="#home">App</a>
         <a class="link" href="#support">Support</a>
         <a class="link" href="#privacy">Privacy</a>
-        <a class="link lang" href="/index.html" hreflang="de" aria-label="Deutsch">DE</a>
+        <a class="link" href="/index.html" hreflang="en" aria-label="English">EN</a>
       </div>
     </nav>
   </header>
@@ -80,6 +83,15 @@
     document.getElementById('year').textContent = now.getFullYear();
     document.getElementById('ppDate').textContent = now.toLocaleDateString('en-US');
     document.getElementById('updated-app').textContent = now.toLocaleDateString('en-US');
+
+    const menuBtn = document.getElementById('menu-btn');
+    const navLinks = document.getElementById('nav-links');
+    if (menuBtn && navLinks) {
+      menuBtn.addEventListener('click', () => {
+        const open = navLinks.classList.toggle('open');
+        menuBtn.setAttribute('aria-expanded', String(open));
+      });
+    }
   </script>
 </body>
 </html>
