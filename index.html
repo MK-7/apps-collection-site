@@ -70,6 +70,19 @@
       <h3>Deine Rechte</h3>
       <p>Bei E-Mail-Kontakt gelten die Rechte nach Art. 15–21 DSGVO. Wende dich dafür an die oben angegebene E-Mail-Adresse.</p>
     </section>
+
+    <section id="terms">
+  <h2>Nutzungsbedingungen</h2>
+  <p><em>Letzte Aktualisierung:</em> <span id="tcDate">—</span></p>
+  <p>Durch die Nutzung dieser App erklärst du dich mit den folgenden Bedingungen einverstanden:</p>
+  <ul>
+    <li>Die App wird „wie besehen“ bereitgestellt – ohne Garantie für Funktion, Verfügbarkeit oder Fehlerfreiheit.</li>
+    <li>Du bist selbst verantwortlich für die Nutzung der App und die Inhalte, die du darin verwaltest.</li>
+    <li>Der Entwickler übernimmt keine Haftung für Schäden, die aus der Nutzung entstehen.</li>
+    <li>Die App darf nicht für rechtswidrige Zwecke verwendet werden.</li>
+  </ul>
+  <p>Änderungen an den Nutzungsbedingungen können jederzeit erfolgen. Bitte prüfe diese Seite regelmäßig.</p>
+</section>
   </main>
 
   <footer>
@@ -92,5 +105,33 @@
       });
     }
   </script>
+
+  <script>
+  const now = new Date();
+  // bestehend:
+  document.getElementById('year').textContent = now.getFullYear();
+  const pp = document.getElementById('ppDate');
+  const upd = document.getElementById('updated-app');
+  if (pp) pp.textContent = now.toLocaleDateString('de-DE');
+  if (upd) upd.textContent = now.toLocaleDateString('de-DE');
+
+  // neu: Terms & Conditions Datum (DE & EN)
+  const tcDates = document.querySelectorAll('#terms #tcDate');
+  tcDates.forEach(el => {
+    // Sprache anhand des <html lang="..."> setzen
+    const lang = document.documentElement.lang;
+    el.textContent = now.toLocaleDateString(lang === 'en' ? 'en-GB' : 'de-DE');
+  });
+
+  // Mobile nav toggle
+  const menuBtn = document.getElementById('menu-btn');
+  const navLinks = document.getElementById('nav-links');
+  if (menuBtn && navLinks) {
+    menuBtn.addEventListener('click', () => {
+      const open = navLinks.classList.toggle('open');
+      menuBtn.setAttribute('aria-expanded', String(open));
+    });
+  }
+</script>
 </body>
 </html>

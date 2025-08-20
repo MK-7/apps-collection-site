@@ -71,6 +71,19 @@
       <h3>Your Rights</h3>
       <p>For email contact, the rights under Art. 15–21 GDPR apply. Reach out via the email above.</p>
     </section>
+
+    <section id="terms">
+  <h2>Terms & Conditions</h2>
+  <p><em>Last Updated:</em> <span id="tcDate">—</span></p>
+  <p>By using this app, you agree to the following terms:</p>
+  <ul>
+    <li>The app is provided “as is” – without warranty of functionality, availability, or freedom from errors.</li>
+    <li>You are solely responsible for how you use the app and any content you manage within it.</li>
+    <li>The developer is not liable for any damages resulting from the use of the app.</li>
+    <li>The app must not be used for unlawful purposes.</li>
+  </ul>
+  <p>These terms may be updated at any time. Please review this page regularly.</p>
+</section>
   </main>
 
   <footer>
@@ -93,5 +106,33 @@
       });
     }
   </script>
+
+  <script>
+  const now = new Date();
+  // bestehend:
+  document.getElementById('year').textContent = now.getFullYear();
+  const pp = document.getElementById('ppDate');
+  const upd = document.getElementById('updated-app');
+  if (pp) pp.textContent = now.toLocaleDateString('de-DE');
+  if (upd) upd.textContent = now.toLocaleDateString('de-DE');
+
+  // neu: Terms & Conditions Datum (DE & EN)
+  const tcDates = document.querySelectorAll('#terms #tcDate');
+  tcDates.forEach(el => {
+    // Sprache anhand des <html lang="..."> setzen
+    const lang = document.documentElement.lang;
+    el.textContent = now.toLocaleDateString(lang === 'en' ? 'en-GB' : 'de-DE');
+  });
+
+  // Mobile nav toggle
+  const menuBtn = document.getElementById('menu-btn');
+  const navLinks = document.getElementById('nav-links');
+  if (menuBtn && navLinks) {
+    menuBtn.addEventListener('click', () => {
+      const open = navLinks.classList.toggle('open');
+      menuBtn.setAttribute('aria-expanded', String(open));
+    });
+  }
+</script>
 </body>
 </html>
