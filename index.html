@@ -90,35 +90,20 @@
     <span><a href="#privacy">Datenschutz</a> · <a href="#support">Support</a> · <a href="/en.html" hreflang="en">EN</a></span>
   </footer>
 
-  <script>
-    const now = new Date();
-    document.getElementById('year').textContent = now.getFullYear();
-    document.getElementById('ppDate').textContent = now.toLocaleDateString('de-DE');
-    document.getElementById('updated-app').textContent = now.toLocaleDateString('de-DE');
-
-    const menuBtn = document.getElementById('menu-btn');
-    const navLinks = document.getElementById('nav-links');
-    if (menuBtn && navLinks) {
-      menuBtn.addEventListener('click', () => {
-        const open = navLinks.classList.toggle('open');
-        menuBtn.setAttribute('aria-expanded', String(open));
-      });
-    }
-  </script>
-
-  <script>
+<script>
   const now = new Date();
-  // bestehend:
+  // Footer Jahr
   document.getElementById('year').textContent = now.getFullYear();
+
+  // Privacy Policy & Update-Datum
   const pp = document.getElementById('ppDate');
   const upd = document.getElementById('updated-app');
-  if (pp) pp.textContent = now.toLocaleDateString('de-DE');
-  if (upd) upd.textContent = now.toLocaleDateString('de-DE');
+  if (pp) pp.textContent = now.toLocaleDateString(document.documentElement.lang === 'en' ? 'en-US' : 'de-DE');
+  if (upd) upd.textContent = now.toLocaleDateString(document.documentElement.lang === 'en' ? 'en-US' : 'de-DE');
 
-  // neu: Terms & Conditions Datum (DE & EN)
+  // Terms & Conditions Datum
   const tcDates = document.querySelectorAll('#terms #tcDate');
   tcDates.forEach(el => {
-    // Sprache anhand des <html lang="..."> setzen
     const lang = document.documentElement.lang;
     el.textContent = now.toLocaleDateString(lang === 'en' ? 'en-GB' : 'de-DE');
   });
@@ -133,5 +118,6 @@
     });
   }
 </script>
+
 </body>
 </html>
