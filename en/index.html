@@ -30,6 +30,25 @@
   </header>
 
   <main class="wrap">
+    <section id="manga-collector" class="card">
+      <div class="row">
+        <div class="icon">
+          <img src="/assets/mangacollectorIcon.png" alt="App Icon">
+        </div>
+        <div>
+          <div class="title">Manga Collector</div>
+          <div class="muted">Collect and organize your manga collection</div>
+        </div>
+      </div>
+      <div class="kpi">
+        <div class="chip"><span>iOS</span><span>26</span></div>
+        <div class="chip"><span>Version</span><span>1.0.0</span></div>
+        <div class="chip"><span>Updated</span><span id="updated-manga-collector">—</span></div>
+      </div>
+      <div style="margin-top:12px">
+        <a class="btn" href="https://apps.apple.com/us/app/manga-collector/id6761459577" rel="noopener" style="background-color: #F0C454;">View on App Store</a>
+      </div>
+    </section>
     <section id="pile-shame" class="card">
       <div class="row">
         <div class="icon">
@@ -133,8 +152,10 @@
   // Privacy Policy & Update-Datum
   const pp = document.getElementById('ppDate');
   const upd = document.getElementById('updated-app');
+  const updManga = document.getElementById('updated-manga-collector');
   if (pp) pp.textContent = now.toLocaleDateString(document.documentElement.lang === 'en' ? 'en-US' : 'de-DE');
   if (upd) upd.textContent = now.toLocaleDateString(document.documentElement.lang === 'en' ? 'en-US' : 'de-DE');
+  if (updManga) updManga.textContent = now.toLocaleDateString(document.documentElement.lang === 'en' ? 'en-US' : 'de-DE');
 
   // Terms & Conditions Datum
   const tcDates = document.querySelectorAll('#terms #tcDate');
