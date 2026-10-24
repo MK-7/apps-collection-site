@@ -1,0 +1,484 @@
+<!doctype html>
+<html lang="en" data-lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Totabi – Travel Journal &amp; Diary</title>
+  <meta name="description" content="Totabi is a travel journal made for iPhone Duo, and for iPhone and iPad, that looks and feels like a real leather notebook. Apple Pencil, eki stamps, stickers, washi tape, and a page for every day.">
+  <meta name="theme-color" content="#F4EBDB" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1C1814" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="totabi-assets/icon.svg" type="image/svg+xml">
+  <link rel="icon" href="totabi-assets/icon.png" type="image/png">
+  <link rel="apple-touch-icon" href="totabi-assets/apple-touch-icon.png">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Totabi – Travel Journal & Diary">
+  <meta property="og:description" content="A travel journal that opens like a book on iPhone Duo. Also on iPhone and iPad.">
+  <meta property="og:image" content="https://ottacon.app/totabi-assets/screens/duo-spread.jpg">
+  <meta property="og:url" content="https://ottacon.app/totabi">
+  <meta name="twitter:card" content="summary_large_image">
+  <!-- Once Totabi is on the App Store, add its ID for Safari's Smart App Banner:
+  <meta name="apple-itunes-app" content="app-id=TODO"> -->
+  <style>
+    :root {
+      --paper: #F4EBDB;
+      --paper-deep: #EADFCB;
+      --card: #FBF6EC;
+      --ink: #2B2420;
+      --ink-soft: #5E5248;
+      --line: rgba(43, 36, 32, 0.12);
+      --red: #E24C38;
+      --red-ink: #C23A28;
+      --blue: #2F4A93;
+      --dot: rgba(43, 36, 32, 0.10);
+      --shadow: 0 1px 2px rgba(59, 42, 26, 0.10), 0 18px 40px -12px rgba(59, 42, 26, 0.35);
+      --serif: ui-serif, "New York", "Iowan Old Style", Georgia, serif;
+      --sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, "Segoe UI", Roboto, sans-serif;
+      --radius: 22px;
+      color-scheme: light;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper: #1C1814;
+        --paper-deep: #15120F;
+        --card: #26201B;
+        --ink: #EFE6D6;
+        --ink-soft: #BFB3A3;
+        --line: rgba(239, 230, 214, 0.14);
+        --red: #F06A55;
+        --red-ink: #F06A55;
+        --blue: #7E9BEA;
+        --dot: rgba(239, 230, 214, 0.07);
+        --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 22px 44px -14px rgba(0, 0, 0, 0.7);
+        color-scheme: dark;
+      }
+    }
+
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+    body {
+      margin: 0;
+      font-family: var(--sans);
+      font-size: 17px;
+      line-height: 1.6;
+      color: var(--ink);
+      background-color: var(--paper);
+      background-image: radial-gradient(var(--dot) 1.2px, transparent 1.3px);
+      background-size: 22px 22px;
+      overflow-x: hidden;
+    }
+    img { max-width: 100%; height: auto; display: block; }
+    a { color: inherit; }
+    .wrap { width: min(1120px, 100% - 32px); margin-inline: auto; }
+    h1, h2, h3 { font-family: var(--serif); font-weight: 700; line-height: 1.12; letter-spacing: -0.01em; margin: 0; }
+    p { margin: 0; }
+
+    /* Navigation */
+    .nav { position: sticky; top: 0; z-index: 10; backdrop-filter: saturate(1.4) blur(14px); -webkit-backdrop-filter: saturate(1.4) blur(14px); background: color-mix(in srgb, var(--paper) 78%, transparent); border-bottom: 1px solid var(--line); }
+    .nav .wrap { display: flex; align-items: center; gap: 12px; height: 60px; }
+    .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; font-family: var(--serif); font-weight: 700; font-size: 20px; }
+    .brand img { width: 32px; height: 32px; }
+    .nav .spacer { flex: 1; }
+    .lang { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; padding: 3px; background: var(--card); }
+    .lang button { font: 600 13px/1 var(--sans); color: var(--ink-soft); background: none; border: 0; border-radius: 999px; padding: 7px 11px; cursor: pointer; }
+    .lang button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+
+    /* Buttons */
+    .button { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font: 600 16px/1 var(--sans); padding: 14px 20px; border-radius: 999px; background: var(--ink); color: var(--paper); box-shadow: var(--shadow); transition: transform .2s ease; }
+    .button:hover { transform: translateY(-1px); }
+    .button svg { width: 20px; height: 20px; }
+    .button small { display: block; font-weight: 500; font-size: 11px; opacity: .75; margin-bottom: 3px; letter-spacing: .02em; }
+    .ghost { background: transparent; color: var(--ink); border: 1px solid var(--line); box-shadow: none; }
+
+    /* Hero */
+    .hero { padding: 72px 0 40px; }
+    .hero .wrap { display: grid; grid-template-columns: 1.05fr 1fr; gap: 48px; align-items: center; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 8px; font: 600 13px/1 var(--sans); letter-spacing: .06em; text-transform: uppercase; color: var(--red-ink); }
+    .eyebrow::before { content: ""; width: 22px; height: 2px; background: currentColor; }
+    .hero h1 { font-size: clamp(40px, 6vw, 68px); margin: 18px 0 20px; }
+    .hero h1 em { font-style: italic; color: var(--blue); }
+    .hero p.lead { font-size: 19px; color: var(--ink-soft); max-width: 34ch; }
+    .hero .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+    .devices { position: relative; aspect-ratio: 1 / 0.82; }
+    .devices .pad { position: absolute; inset: 4% 0 auto 6%; width: 94%; border-radius: 18px; box-shadow: var(--shadow); transform: rotate(-2deg); }
+    .devices .phone { position: absolute; left: -2%; bottom: -2%; width: 36%; border-radius: 24px; box-shadow: var(--shadow); border: 5px solid #1d1a17; transform: rotate(3deg); }
+    .tape { position: absolute; z-index: 2; width: 150px; height: 34px; background: repeating-linear-gradient(-45deg, rgba(226, 116, 140, .75) 0 8px, rgba(248, 214, 222, .75) 8px 16px); box-shadow: 0 2px 6px rgba(0,0,0,.08); top: 0; right: 14%; transform: rotate(6deg); }
+
+    /* Sections */
+    section { padding: 72px 0; }
+    .section-head { max-width: 640px; margin-bottom: 40px; }
+    .section-head h2 { font-size: clamp(32px, 4.4vw, 48px); margin: 12px 0 14px; }
+    .section-head p { color: var(--ink-soft); font-size: 18px; }
+
+    .story { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; padding: 28px 0; }
+    .story + .story { border-top: 1px dashed var(--line); }
+    .story.flip .shot { order: 2; }
+    .story .shot { display: flex; justify-content: center; }
+    .story .shot img { width: min(320px, 78%); border-radius: 30px; border: 6px solid #1d1a17; box-shadow: var(--shadow); }
+    .story h3 { font-size: clamp(26px, 3vw, 34px); margin-bottom: 14px; }
+    .story p { color: var(--ink-soft); }
+    .ticks { list-style: none; padding: 0; margin: 18px 0 0; display: grid; gap: 10px; }
+    .ticks li { display: grid; grid-template-columns: 22px 1fr; gap: 10px; }
+    .ticks li::before { content: ""; width: 14px; height: 14px; margin-top: 6px; border-radius: 50%; border: 2px solid var(--red); box-shadow: inset 0 0 0 3px var(--paper); background: var(--red); }
+
+    /* iPhone Duo */
+    .duo { background: #1C1814; color: #EFE6D6; border-radius: 0; }
+    @media (prefers-color-scheme: dark) { .duo { background: #0F0D0B; } }
+    .duo .section-head p, .duo .note { color: #BFB3A3; }
+    .duo .eyebrow { color: #F06A55; }
+    .duo-grid { display: grid; grid-template-columns: 1.7fr 0.85fr 0.75fr; gap: 28px; align-items: end; }
+    .duo figure { margin: 0; }
+    .duo img { border-radius: 18px; box-shadow: 0 24px 50px -16px rgba(0,0,0,.7); }
+    .duo figcaption { margin-top: 14px; font-size: 14px; line-height: 1.5; color: #BFB3A3; }
+    .duo figcaption strong { display: block; color: #EFE6D6; font-size: 15px; margin-bottom: 2px; }
+    .duo .desk img { border-radius: 18px; }
+    .duo .outer img { border-radius: 24px; border: 5px solid #000; }
+
+    /* Feature grid */
+    .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    .card { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; }
+    .card .icon { width: 42px; height: 42px; display: grid; place-items: center; border-radius: 12px; background: color-mix(in srgb, var(--red) 14%, transparent); color: var(--red-ink); margin-bottom: 14px; }
+    .card .icon svg { width: 22px; height: 22px; }
+    .card h3 { font-family: var(--sans); font-size: 17px; font-weight: 650; margin-bottom: 6px; }
+    .card p { font-size: 15px; color: var(--ink-soft); }
+
+    /* Plans */
+    .plans { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .plan { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 30px; position: relative; }
+    .plan.plus { border: 2px solid var(--red); }
+    .plan h3 { font-size: 28px; margin-bottom: 4px; }
+    .plan .sub { color: var(--ink-soft); margin-bottom: 18px; }
+    .stamp { position: absolute; top: -14px; right: 22px; font: 800 13px/1 var(--sans); letter-spacing: .14em; color: #fff; background: var(--red); padding: 9px 12px; border-radius: 4px; transform: rotate(4deg); outline: 2px dashed rgba(255,255,255,.8); outline-offset: -5px; }
+
+    /* Privacy */
+    .privacy { display: grid; grid-template-columns: auto 1fr auto; gap: 22px; align-items: center; background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 28px; }
+    .privacy .badge { width: 56px; height: 56px; border-radius: 16px; display: grid; place-items: center; background: color-mix(in srgb, var(--blue) 14%, transparent); color: var(--blue); }
+    .privacy .badge svg { width: 28px; height: 28px; }
+    .privacy h3 { font-size: 24px; margin-bottom: 6px; }
+    .privacy p { color: var(--ink-soft); }
+
+    footer { padding: 48px 0 64px; border-top: 1px solid var(--line); color: var(--ink-soft); font-size: 15px; }
+    footer .wrap { display: flex; flex-wrap: wrap; gap: 14px 24px; align-items: center; }
+    footer nav { display: flex; flex-wrap: wrap; gap: 8px 20px; }
+    footer .spacer { flex: 1; }
+
+    /* Reveal on scroll */
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.in { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } .button { transition: none; } }
+
+    @media (max-width: 900px) {
+      .hero { padding-top: 40px; }
+      .hero .wrap, .story, .duo-grid, .plans { grid-template-columns: 1fr; }
+      .story.flip .shot { order: 0; }
+      .story { gap: 28px; }
+      .grid { grid-template-columns: repeat(2, 1fr); }
+      .duo .desk img, .duo .outer img { width: 70%; margin-inline: auto; }
+      .privacy { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 520px) {
+      body { font-size: 16px; }
+      .grid { grid-template-columns: 1fr; }
+      section { padding: 56px 0; }
+      .nav .appstore-small { display: none; }
+      .devices .phone { width: 34%; }
+    }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="wrap">
+      <a class="brand" href="#top"><img src="totabi-assets/icon.svg" alt="" width="32" height="32">Totabi</a>
+      <span class="spacer"></span>
+      <div class="lang" role="group" aria-label="Language">
+        <button type="button" data-set-lang="de" aria-pressed="false">DE</button>
+        <button type="button" data-set-lang="en" aria-pressed="true">EN</button>
+      </div>
+      <!-- TODO: Totabi App Store URL -->
+      <a class="button appstore-small" href="#" style="padding:10px 16px;font-size:14px" data-i18n="cta_short">Coming soon</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <div class="hero">
+      <div class="wrap">
+        <div>
+          <span class="eyebrow" data-i18n="eyebrow">Made for iPhone Duo</span>
+          <h1 data-i18n-html="hero_title">Your travels, bound like a <em>real notebook.</em></h1>
+          <p class="lead" data-i18n="hero_lead">A travel journal that opens like a book on iPhone Duo. Write by hand, collect Japan's eki stamps, stick on washi tape and tickets, and keep a page for every day. Also on iPhone and iPad.</p>
+          <div class="actions">
+            <!-- TODO: Totabi App Store URL -->
+            <a class="button" href="#">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.37 12.6c-.02-2.2 1.8-3.26 1.88-3.31-1.02-1.5-2.62-1.7-3.19-1.72-1.36-.14-2.65.8-3.34.8-.69 0-1.75-.78-2.88-.76-1.48.02-2.85.86-3.61 2.19-1.54 2.67-.39 6.62 1.11 8.79.73 1.06 1.6 2.25 2.75 2.2 1.1-.04 1.52-.71 2.85-.71 1.33 0 1.71.71 2.88.69 1.19-.02 1.94-1.08 2.66-2.15.84-1.23 1.19-2.42 1.21-2.48-.03-.01-2.32-.89-2.32-3.54zM14.18 6.15c.61-.74 1.02-1.76.91-2.78-.88.04-1.94.59-2.57 1.32-.56.65-1.06 1.69-.93 2.69.98.08 1.98-.5 2.59-1.23z"/></svg>
+              <span><small data-i18n="cta_small">Coming soon to the</small><span>App Store</span></span>
+            </a>
+            <a class="button ghost" href="#duo" data-i18n="cta_more">See what's inside</a>
+          </div>
+        </div>
+        <div class="devices" aria-hidden="true">
+          <span class="tape"></span>
+          <img class="pad" src="totabi-assets/screens/duo-spread.jpg" alt="" width="1600" height="1126" fetchpriority="high">
+          <img class="phone" src="totabi-assets/screens/duo-outer.jpg" alt="" width="640" height="931">
+        </div>
+      </div>
+    </div>
+
+    <section class="duo" id="duo">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="eyebrow">iPhone Duo</span>
+          <h2 data-i18n="duo_title">Unfold it, and it opens like a book.</h2>
+          <p data-i18n="duo_lead">On iPhone Duo, your journal becomes a two-page spread along the fold. Half-fold it like a laptop and the page stands up while the lower half becomes your desk: write by hand, type like on a typewriter, or drag stickers up onto the page.</p>
+        </div>
+        <div class="duo-grid reveal">
+          <figure>
+            <img src="totabi-assets/screens/duo-spread.jpg" alt="A two-page spread on iPhone Duo's inner display" data-i18n-alt="alt_duo" width="1600" height="1126" loading="lazy">
+            <figcaption><strong data-i18n="duo_open_t">Unfolded</strong> <span data-i18n="duo_open_p">The journal opens into a two-page spread, its spine on the fold.</span></figcaption>
+          </figure>
+          <figure class="desk">
+            <img src="totabi-assets/screens/duo-desk.jpg" alt="Half-folded: the page stands above the fold and a sticker tray lies below" data-i18n-alt="alt_duo_desk" width="760" height="994" loading="lazy">
+            <figcaption><strong data-i18n="duo_half_t">Half-folded</strong> <span data-i18n="duo_half_p">The page stands up; below it, a desk to write, type, or drag stickers up.</span></figcaption>
+          </figure>
+          <figure class="outer">
+            <img src="totabi-assets/screens/duo-outer.jpg" alt="A journal page on iPhone Duo's outer display" data-i18n-alt="alt_duo_outer" width="640" height="931" loading="lazy">
+            <figcaption><strong data-i18n="duo_closed_t">Folded</strong> <span data-i18n="duo_closed_p">One page on the outer display, always at hand.</span></figcaption>
+          </figure>
+      </div>
+    </section>
+
+    <section id="features">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="eyebrow" data-i18n="feat_eyebrow">Made like paper</span>
+          <h2 data-i18n="feat_title">Everything sits on the page like the real thing.</h2>
+          <p data-i18n="feat_lead">Pages turn and curl, paper ages gently over the years, and every ticket, stamp, and sticker has its own weight.</p>
+        </div>
+
+        <div class="story reveal">
+          <div class="shot"><img src="totabi-assets/screens/iphone-write.jpg" alt="Writing on a journal page with Apple Pencil" data-i18n-alt="alt_write" width="640" height="1391" loading="lazy"></div>
+          <div>
+            <h3 data-i18n="s1_title">Write like on paper</h3>
+            <p data-i18n="s1_text">Apple Pencil feels at home here: ink flows, strokes sit in the paper, and your finger is free to turn pages.</p>
+            <ul class="ticks">
+              <li data-i18n="s1_a">Fountain pen, calligraphy, gel pen, fineliner, pencil, highlighter</li>
+              <li data-i18n="s1_b">Type in beautiful fonts, or in a font made from your own handwriting</li>
+              <li data-i18n="s1_c">Dotted, lined, grid, kraft, and black refills</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="story flip reveal">
+          <div class="shot"><img src="totabi-assets/screens/iphone-stickers.jpg" alt="The sticker book open over a journal" data-i18n-alt="alt_stickers" width="640" height="1391" loading="lazy"></div>
+          <div>
+            <h3 data-i18n="s2_title">Collect your trip</h3>
+            <p data-i18n="s2_text">Bring home the things that make a journey: the stamp from a tiny station, the ticket, the leaf from the temple path.</p>
+            <ul class="ticks">
+              <li data-i18n="s2_a">Photograph eki stamps and Totabi lifts the ink cleanly off the paper</li>
+              <li data-i18n="s2_b">Turn any photo into a sticker with a white border</li>
+              <li data-i18n="s2_c">Washi tape, tickets, postmarks, pressed leaves, scanned receipts</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="story reveal">
+          <div class="shot"><img src="totabi-assets/screens/iphone-diary.jpg" alt="A diary page with Kitte's mood and today's entry" data-i18n-alt="alt_diary" width="640" height="1391" loading="lazy"></div>
+          <div>
+            <h3 data-i18n="s3_title">A page for every day</h3>
+            <p data-i18n="s3_text">Keep a diary next to your travel journals. Each day gets its own page, with gentle prompts and a reminder if you like.</p>
+            <ul class="ticks">
+              <li data-i18n="s3_a">Tell Kitte, Totabi's postage-stamp friend, how the day felt</li>
+              <li data-i18n="s3_b">Lock a diary with Face ID</li>
+              <li data-i18n="s3_c">Write from your lock screen with one tap</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <section>
+      <div class="wrap">
+        <div class="section-head">
+          <span class="eyebrow" data-i18n="more_eyebrow">And a lot more</span>
+          <h2 data-i18n="more_title">Little things that make it yours.</h2>
+        </div>
+        <div class="grid">
+          <div class="card reveal"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></div><h3 data-i18n="g1_t">Trip map</h3><p data-i18n="g1_p">A map of your route, drawn from the places you stamped.</p></div>
+          <div class="card reveal"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16v13H4z"/><path d="M8 7V4h8v3"/></svg></div><h3 data-i18n="g2_t">Back pocket</h3><p data-i18n="g2_p">Tuck keepsakes away and place them on a page later.</p></div>
+          <div class="card reveal"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19c4-1 8-5 10-10l3-3-2-1-3 3C8 10 5 14 5 19z"/></svg></div><h3 data-i18n="g3_t">Pressed leaves</h3><p data-i18n="g3_p">Photograph a leaf or flower and press it onto the page.</p></div>
+          <div class="card reveal"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l4-1 11-11-3-3L5 16z"/><path d="M14 6l3 3"/></svg></div><h3 data-i18n="g4_t">Your handwriting font</h3><p data-i18n="g4_p">Write a few letters, and type in your own hand.</p></div>
+          <div class="card reveal"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg></div><h3 data-i18n="g5_t">Paper that ages</h3><p data-i18n="g5_p">Pages slowly warm and yellow over the months, like a real notebook.</p></div>
+          <div class="card reveal"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l2.5 5 5.5.8-4 3.9.9 5.5L12 15.6 7.1 18.2l.9-5.5-4-3.9L9.5 8z"/></svg></div><h3 data-i18n="g6_t">Shiny finishes</h3><p data-i18n="g6_p">Glossy, glitter, and holographic stickers that catch the light as you tilt.</p></div>
+          <div class="card reveal"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 15a3 3 0 0 0 3-3V6a3 3 0 0 0-6 0v6a3 3 0 0 0 3 3z"/><path d="M19 11a7 7 0 0 1-14 0M12 18v3"/></svg></div><h3 data-i18n="g7_t">Voice notes</h3><p data-i18n="g7_p">Tuck a sound, a story, or a song behind anything on a page.</p></div>
+          <div class="card reveal"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16v16H4z"/><path d="M4 9h16M9 9v11"/></svg></div><h3 data-i18n="g8_t">Full-screen pages</h3><p data-i18n="g8_p">Let the page fill the screen, edge to edge.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="plus">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="eyebrow">Totabi Plus</span>
+          <h2 data-i18n="plus_title">Free to start. Plus for making more.</h2>
+          <p data-i18n="plus_lead">Everything you make stays yours, with or without Plus. Choose monthly, yearly, or buy it once for life.</p>
+        </div>
+        <div class="plans">
+          <div class="plan reveal">
+            <h3 data-i18n="free_t">Free</h3>
+            <p class="sub" data-i18n="free_s">All the essentials, for good.</p>
+            <ul class="ticks">
+              <li data-i18n="free_a">Three journals, diaries, or stamp books</li>
+              <li data-i18n="free_b">Apple Pencil, fonts, stickers, tape, and stamps</li>
+              <li data-i18n="free_c">Eki stamps, trip map, pocket, and pressed leaves</li>
+              <li data-i18n="free_d">Kitte's moods, diary lock, and the iPhone Duo desk</li>
+            </ul>
+          </div>
+          <div class="plan plus reveal">
+            <span class="stamp" aria-hidden="true">PLUS</span>
+            <h3>Totabi Plus</h3>
+            <p class="sub" data-i18n="plus_s">For journaling every trip.</p>
+            <ul class="ticks">
+              <li data-i18n="plus_a">Unlimited journals</li>
+              <li data-i18n="plus_b">iCloud Sync across your devices</li>
+              <li data-i18n="plus_c">Shiny sticker finishes</li>
+              <li data-i18n="plus_d">Your own diary page design</li>
+              <li data-i18n="plus_e">Voice notes</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section style="padding-top:0">
+      <div class="wrap">
+        <div class="privacy reveal">
+          <div class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg></div>
+          <div>
+            <h3 data-i18n="priv_t">Private by design</h3>
+            <p data-i18n="priv_p">No account, no ads, no tracking. Your journals stay on your device, and in your private iCloud if you choose.</p>
+          </div>
+          <a class="button ghost" href="totabi-privacy.html" data-i18n="priv_link">Privacy policy</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <a class="brand" href="#top"><img src="totabi-assets/icon.svg" alt="" width="28" height="28">Totabi</a>
+      <span class="spacer"></span>
+      <nav>
+        <a href="mailto:support@ottacon.app" data-i18n="f_support">Support</a>
+        <a href="totabi-privacy.html" data-i18n="f_privacy">Privacy</a>
+        <a href="/" data-i18n="f_more">More apps</a>
+      </nav>
+      <span>© 2026 OttaconProductions</span>
+    </div>
+  </footer>
+
+  <script>
+    // German copy; English is in the markup, so the page reads fine without JavaScript.
+    const de = {
+      cta_short: "Bald verfügbar",
+      eyebrow: "Gemacht fürs iPhone Duo",
+      hero_title: "Deine Reisen, gebunden wie ein <em>echtes Notizbuch.</em>",
+      hero_lead: "Ein Reisetagebuch, das sich auf dem iPhone Duo wie ein Buch öffnet. Schreib von Hand, sammle Japans Eki-Stempel, klebe Washi-Tape und Tickets ein und führe eine Seite für jeden Tag. Auch auf iPhone und iPad.",
+      cta_small: "Bald im",
+      cta_more: "Was alles drin ist",
+      feat_eyebrow: "Wie aus Papier",
+      feat_title: "Alles liegt auf der Seite wie in echt.",
+      feat_lead: "Seiten blättern und wölben sich, Papier altert über die Jahre, und jedes Ticket, jeder Stempel und Sticker hat sein eigenes Gewicht.",
+      s1_title: "Schreiben wie auf Papier",
+      s1_text: "Der Apple Pencil fühlt sich hier zu Hause: Die Tinte fließt, Striche liegen im Papier, und dein Finger blättert die Seiten.",
+      s1_a: "Füller, Kalligrafie, Gelstift, Fineliner, Bleistift, Textmarker",
+      s1_b: "Tippe in schönen Schriften – oder in einer Schrift aus deiner eigenen Handschrift",
+      s1_c: "Gepunktete, linierte, karierte, Kraft- und schwarze Einlagen",
+      s2_title: "Sammle deine Reise",
+      s2_text: "Bring mit, was eine Reise ausmacht: den Stempel vom kleinen Bahnhof, das Ticket, das Blatt vom Tempelweg.",
+      s2_a: "Fotografiere Eki-Stempel, und Totabi hebt die Tinte sauber vom Papier",
+      s2_b: "Mach aus jedem Foto einen Sticker mit weißem Rand",
+      s2_c: "Washi-Tape, Tickets, Poststempel, gepresste Blätter, gescannte Belege",
+      s3_title: "Eine Seite für jeden Tag",
+      s3_text: "Führe ein Tagebuch neben deinen Reisetagebüchern. Jeder Tag bekommt seine eigene Seite, mit sanften Impulsen und auf Wunsch einer Erinnerung.",
+      s3_a: "Erzähl Kitte, Totabis Briefmarken-Freund, wie der Tag war",
+      s3_b: "Sperre ein Tagebuch mit Face ID",
+      s3_c: "Mit einem Tipp vom Sperrbildschirm aus schreiben",
+      duo_title: "Aufklappen – und es öffnet sich wie ein Buch.",
+      duo_lead: "Auf dem iPhone Duo wird dein Tagebuch zur Doppelseite entlang des Falzes. Halb zugeklappt wie ein Laptop steht die Seite auf, und die untere Hälfte wird zu deinem Schreibtisch: von Hand schreiben, tippen wie auf einer Schreibmaschine oder Sticker auf die Seite ziehen.",
+      duo_open_t: "Aufgeklappt", duo_open_p: "Das Tagebuch öffnet sich zur Doppelseite, der Buchrücken liegt im Falz.",
+      duo_half_t: "Halb zugeklappt", duo_half_p: "Die Seite steht auf; darunter ein Schreibtisch zum Schreiben, Tippen oder Sticker-Hochziehen.",
+      duo_closed_t: "Zugeklappt", duo_closed_p: "Eine Seite auf dem äußeren Display, immer zur Hand.",
+      alt_duo_desk: "Halb zugeklappt: Die Seite steht über dem Falz, darunter liegt ein Sticker-Fach",
+      more_eyebrow: "Und noch viel mehr",
+      more_title: "Kleine Dinge, die es zu deinem machen.",
+      g1_t: "Reisekarte", g1_p: "Eine Karte deiner Route, gezeichnet aus den Orten deiner Stempel.",
+      g2_t: "Rückentasche", g2_p: "Verstau Erinnerungsstücke und klebe sie später auf eine Seite.",
+      g3_t: "Gepresste Blätter", g3_p: "Fotografiere ein Blatt oder eine Blüte und presse sie auf die Seite.",
+      g4_t: "Deine Handschrift als Schrift", g4_p: "Schreib ein paar Buchstaben – und tippe in deiner eigenen Handschrift.",
+      g5_t: "Papier, das altert", g5_p: "Seiten werden über die Monate langsam wärmer und gelblicher, wie ein echtes Notizbuch.",
+      g6_t: "Glänzende Sticker", g6_p: "Glossy-, Glitzer- und Holo-Sticker, die beim Neigen das Licht einfangen.",
+      g7_t: "Sprachnotizen", g7_p: "Versteck einen Klang, eine Geschichte oder ein Lied hinter allem auf einer Seite.",
+      g8_t: "Vollbild-Seiten", g8_p: "Lass die Seite den ganzen Bildschirm füllen, von Rand zu Rand.",
+      plus_title: "Kostenlos starten. Plus für mehr.",
+      plus_lead: "Alles, was du machst, bleibt deins – mit oder ohne Plus. Monatlich, jährlich oder einmal für immer.",
+      free_t: "Kostenlos", free_s: "Alles Wichtige, für immer.",
+      free_a: "Drei Tagebücher, Diaries oder Stempelbücher",
+      free_b: "Apple Pencil, Schriften, Sticker, Tape und Stempel",
+      free_c: "Eki-Stempel, Reisekarte, Rückentasche und gepresste Blätter",
+      free_d: "Kittes Stimmungen, Tagebuch-Sperre und der iPhone-Duo-Schreibtisch",
+      plus_s: "Für ein Tagebuch zu jeder Reise.",
+      plus_a: "Unbegrenzt viele Tagebücher",
+      plus_b: "iCloud-Sync über alle Geräte",
+      plus_c: "Glänzende Sticker-Oberflächen",
+      plus_d: "Eigenes Seitendesign fürs Tagebuch",
+      plus_e: "Sprachnotizen",
+      priv_t: "Privat von Grund auf",
+      priv_p: "Kein Account, keine Werbung, kein Tracking. Deine Tagebücher bleiben auf deinem Gerät – und auf Wunsch in deiner privaten iCloud.",
+      priv_link: "Datenschutzerklärung",
+      f_support: "Support", f_privacy: "Datenschutz", f_more: "Weitere Apps",
+      alt_write: "Mit dem Apple Pencil auf einer Tagebuchseite schreiben",
+      alt_stickers: "Das Stickerbuch über einem Tagebuch",
+      alt_diary: "Eine Tagebuchseite mit Kittes Stimmung und dem heutigen Eintrag",
+      alt_duo: "Eine Doppelseite auf dem inneren Display des iPhone Duo",
+      alt_duo_outer: "Eine Tagebuchseite auf dem äußeren Display des iPhone Duo",
+    };
+    const english = {};
+    document.querySelectorAll("[data-i18n]").forEach(el => english[el.dataset.i18n] = el.textContent);
+    document.querySelectorAll("[data-i18n-html]").forEach(el => english[el.dataset.i18nHtml] = el.innerHTML);
+    document.querySelectorAll("[data-i18n-alt]").forEach(el => english[el.dataset.i18nAlt] = el.alt);
+
+    function setLanguage(lang) {
+      const copy = lang === "de" ? de : english;
+      document.documentElement.lang = lang;
+      document.documentElement.dataset.lang = lang;
+      document.querySelectorAll("[data-i18n]").forEach(el => { const t = copy[el.dataset.i18n]; if (t) el.textContent = t; });
+      document.querySelectorAll("[data-i18n-html]").forEach(el => { const t = copy[el.dataset.i18nHtml]; if (t) el.innerHTML = t; });
+      document.querySelectorAll("[data-i18n-alt]").forEach(el => { const t = copy[el.dataset.i18nAlt]; if (t) el.alt = t; });
+      document.querySelectorAll("[data-set-lang]").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.setLang === lang)));
+      document.title = lang === "de" ? "Totabi – Reisetagebuch & Diary" : "Totabi – Travel Journal & Diary";
+    }
+
+    let saved = null;
+    try { saved = localStorage.getItem("totabi-lang"); } catch (e) {}
+    const params = new URLSearchParams(location.search);
+    const initial = params.get("lang") || saved || ((navigator.language || "").toLowerCase().startsWith("de") ? "de" : "en");
+    if (initial === "de") setLanguage("de");
+
+    document.querySelectorAll("[data-set-lang]").forEach(button => button.addEventListener("click", () => {
+      setLanguage(button.dataset.setLang);
+      try { localStorage.setItem("totabi-lang", button.dataset.setLang); } catch (e) {}
+    }));
+
+    // Sections ease in as they scroll into view.
+    const reveals = document.querySelectorAll(".reveal");
+    if ("IntersectionObserver" in window && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      const observer = new IntersectionObserver(entries => entries.forEach(entry => {
+        if (entry.isIntersecting) { entry.target.classList.add("in"); observer.unobserve(entry.target); }
+      }), { rootMargin: "0px 0px -8% 0px" });
+      reveals.forEach(el => observer.observe(el));
+    } else {
+      reveals.forEach(el => el.classList.add("in"));
+    }
+  </script>
+</body>
+</html>
